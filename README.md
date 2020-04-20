@@ -12,7 +12,7 @@
 
 ## User Stories
 
-### Sign up, log in and out
+### User
 
 > As a potential user,  
 > so that I can use the service,  
@@ -25,6 +25,10 @@
 > As a user,  
 > to prevent anyone messing with my account,  
 > I want to be able to log out.
+
+> As a user,
+> so that I can see the available properties,
+> I want to see a list of properties.
 
 ### Landlord
 
@@ -65,3 +69,13 @@
 > As a tenant,  
 > so that I  do not cause a double booking,  
 > I should only be able to book available dates (landlord specified available and not already booked).
+
+## MVP
+
+> As a user,
+> so that I can see the available properties,
+> I want to see a list of properties.
+
+> As a landlord,  
+> so that I can rent out my space,  
+> I can list a new space.
