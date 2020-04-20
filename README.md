@@ -34,9 +34,7 @@
 
 > As a landlord,  
 > so that I can describe my space,  
-> when listing a space,  
-> it can have a name,  
-> description and price per night.
+> when listing a space, it can have a name, description and price per night.
 
 > As a landlord,  
 > so that I can rent out my space,  
