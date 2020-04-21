@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+  <title>View Spaces</title>
+</head>
+<body>
+  <h1>View Spaces</h1>
+  <section class="feed">
+    <div class="space">
+      <ul>   
+      <%@spaces.each do|space|%>
+        <li>
+        <%=space.name%>
+        </li>
+      <%end%>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
+
