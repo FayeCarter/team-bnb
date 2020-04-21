@@ -11,7 +11,7 @@ class BnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    "Cottage has been listed"
+    "#{params['name']} has been listed"
   end
 
 end
