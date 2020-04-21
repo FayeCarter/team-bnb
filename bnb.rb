@@ -6,11 +6,11 @@ class BnB < Sinatra::Base
 
   get '/' do
     "Hello World!"
-    redirect '/view_spaces'
+    redirect '/spaces'
   end
 
-  get '/view_spaces' do
+  get '/spaces' do
     @spaces = Space.all
-    erb :view_spaces
+    erb :'spaces/index'
   end
 end

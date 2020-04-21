@@ -10,8 +10,6 @@ require File.join(File.dirname(__FILE__), '..', 'bnb.rb')
 
 Capybara.app = BnB
 
-ENV['ENVIRONMENT'] = 'test'
-
 RSpec.configure do |config|
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
     SimpleCov::Formatter::Console,
