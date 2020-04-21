@@ -83,4 +83,8 @@
 ## Instructions
 
 ### Database Setup
-
+1. Connect to PSQL - psql postgres
+2. Create a database - CREATE DATABASE bnb;
+3. Connect to your database - \c bnb;
+4. Create table for spaces - follow migrations for db/migrations/01_create_spaces_table.sql
+5. Follow steps 2-4 to create a second database called 'bnb_test'
