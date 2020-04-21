@@ -13,10 +13,8 @@ class BnB < Sinatra::Base
 
   post '/spaces/new' do
     conn = PG.connect(dbname: 'bnb_test')
-    result = conn.exec("INSERT INTO spaces (name) VALUES('#{params['name']}') RETURNING id, name;")
-    id = result[0]['id']
-    name = result[0]['name']
-    "#{params['name']} has been listed"
+    result = Space.create(name: params['name'])
+    "#{result.name} has been listed"
   end
 
 end
