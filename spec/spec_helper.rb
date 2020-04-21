@@ -1,7 +1,7 @@
 
 require 'simplecov'
 require 'simplecov-console'
-
+require 'set_up_test_database'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
@@ -17,4 +17,10 @@ RSpec.configure do |config|
     # SimpleCov::Formatter::HTMLFormatter
     ])
   SimpleCov.start
+end
+
+RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
 end
