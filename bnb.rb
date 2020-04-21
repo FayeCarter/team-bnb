@@ -1,10 +1,16 @@
 require 'sinatra/base'
-require 'PG'
+require './lib/space'
+require 'pg'
 
 class BnB < Sinatra::Base
-
   get '/' do
     "Hello World!"
+    redirect '/spaces'
+  end
+
+  get '/spaces' do
+    @spaces = Space.all
+    erb :'spaces/index'
   end
 
   get '/spaces/new' do
@@ -16,5 +22,4 @@ class BnB < Sinatra::Base
     result = Space.create(name: params['name'])
     "#{result.name} has been listed"
   end
-
 end
