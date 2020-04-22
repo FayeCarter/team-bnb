@@ -28,7 +28,7 @@ class BnB < Sinatra::Base
   end
 
   post '/users' do    
-    "Graham"
+    username = params['name']
     
   end
 
