@@ -1,0 +1,1 @@
+ALTER TABLE spaces ADD description varchar(2000) NOT NULL;
