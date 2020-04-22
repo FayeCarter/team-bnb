@@ -22,4 +22,14 @@ class BnB < Sinatra::Base
     result = Space.create(name: params['name'])
     "#{result.name} has been listed"
   end
+
+  get '/users/new' do
+    erb :'users/new'
+  end
+
+  post '/users' do    
+    "Graham"
+    
+  end
+
 end
