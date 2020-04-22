@@ -19,7 +19,7 @@ class BnB < Sinatra::Base
 
   post '/spaces/new' do
     conn = PG.connect(dbname: 'bnb_test')
-    result = Space.create(name: params['name'])
+    result = Space.create(name: params['name'], description: params['description'])
     redirect '/spaces'
   end
 end
