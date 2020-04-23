@@ -8,7 +8,7 @@ feature 'Signup' do
     fill_in('password', with: 'graham_example')
     fill_in('email', with: 'gman@gmail.com')
     click_on 'Signup'
-    expect(current_path).to be('/')
+    expect(current_path).to eq('/')
     expect(page).to have_content 'Graham'
   end
   scenario 'Faye signs up and sees her name' do
@@ -18,7 +18,7 @@ feature 'Signup' do
     fill_in('password', with: 'secret')
     fill_in('email', with: 'Faye@example.com')
     click_on 'Signup'
-    expect(current_path).to be('/')
+    expect(current_path).to eq('/')
     expect(page).to have_content 'Faye'
   end
 end
