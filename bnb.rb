@@ -41,7 +41,8 @@ class BnB < Sinatra::Base
   end
 
   get '/sessions/new' do
-
+    erb :'sessions/new'
+    "john"
   end
 
 end
