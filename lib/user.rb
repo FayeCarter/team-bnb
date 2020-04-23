@@ -1,17 +1,17 @@
 class User
   attr_reader :first_name, :last_name, :email, :password
 
-  def intialize(first_name:, last_name:, email:, password:)
+  def initialize(first_name:, last_name:, email:, password:)
     @first_name = first_name
     @last_name = last_name
     @email = email
     @password = password
   end
 
-
   def self.create(first_name:, last_name:, email:, password:)
+    hashed_password = BCrypt::Password.create(password)
     connection = PG.connect(dbname: 'bnb_test')
-    result = connection.exec("INSERT INTO users (firstname, lastname, email, passworddigest) VALUES('#{first_name}','#{last_name}','#{email}','#{password}') RETURNING firstname, lastname, email, passworddigest;")
+    result = connection.exec("INSERT INTO users (firstname, lastname, email, passworddigest) VALUES('#{first_name}','#{last_name}','#{email}','#{hashed_password}') RETURNING firstname, lastname, email, passworddigest;")
     return User.new(first_name: result[0]['firstname'], last_name: result[0]['lastname'], email: result[0]['email'], password: result[0]['passworddigest'])
   end
 
