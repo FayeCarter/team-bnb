@@ -1,0 +1,1 @@
+ALTER TABLE spaces ADD price NUMERIC(7,2) NOT NULL;

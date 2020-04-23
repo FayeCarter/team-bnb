@@ -88,3 +88,7 @@
 3. Connect to your database - \c bnb;
 4. Create table for spaces - follow migrations for db/migrations/
 5. Follow steps 2-4 to create a second database called 'bnb_test'
+
+## Database design decisions
+
+- the prices column of the spaces table has been defined as NUMERIC(7,2) which sets a price limit of 99999.99.
