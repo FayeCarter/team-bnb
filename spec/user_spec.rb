@@ -14,4 +14,16 @@ describe User do
     expect(test_user.email).to eq "gman@gmail.com"
     expect(test_user.password).to eq result[0]['passworddigest']
   end
+
+  describe '.find_by_id' do
+    it 'searches users database by id' do
+      test_user = User.create(first_name: 'Graham', last_name: 'Falconer', email: 'gman@gmail.com', password: 'password123')
+      found_user = User.find_by_id(test_user.id)
+
+      expect(found_user.id).to eq(test_user.id)
+      expect(found_user.first_name).to eq(test_user.first_name)
+      expect(found_user.email).to eq(test_user.email)
+    end
+  end
 end
+

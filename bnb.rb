@@ -1,11 +1,14 @@
 require 'sinatra/base'
 require './lib/space'
 require 'pg'
+require './lib/user'
 
 class BnB < Sinatra::Base
+  enable :sessions
+
   get '/' do
-    "Hello World!"
-    redirect '/spaces'
+    @user = User.find_by_id(session['user_id'])
+    erb :index
   end
 
   get '/spaces' do
@@ -28,8 +31,11 @@ class BnB < Sinatra::Base
   end
 
   post '/users' do    
-    username = params['firstname']
-    
+    #username = params['firstname']
+    user = User.create(first_name: params['firstname'], last_name: params['lastname'], password: params['password'], email: params['email'])
+    session['user_id'] = user.id
+    pp session   # = 4 ==> userid: 4
+    redirect '/'
   end
 
 end
