@@ -1,8 +1,8 @@
+require 'space'
+
 feature 'User can view spaces' do
-  
   scenario 'a space is shown on the page' do
-    connection = PG.connect(dbname: 'bnb_test')
-    connection.exec("INSERT INTO spaces(name) VALUES('London Flat');")
+    Space.create(name: 'London Flat', price: 0, description: '')
     visit('/spaces')
     expect(page).to have_content('London Flat')
   end

@@ -21,8 +21,8 @@ class BnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    result = Space.create(name: params['name'])
-    "#{result.name} has been listed"
+    Space.create(name: params['name'], price: params['price'], description: params['description'])
+    redirect '/spaces'
   end
 
   get '/users/new' do
