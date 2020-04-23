@@ -4,7 +4,6 @@ require 'pg'
 
 class BnB < Sinatra::Base
   get '/' do
-    "Hello World!"
     redirect '/spaces'
   end
 
@@ -18,8 +17,8 @@ class BnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    conn = PG.connect(dbname: 'bnb_test')
-    result = Space.create(name: params['name'])
-    "#{result.name} has been listed"
+    p params['description'] == ""
+    Space.create(name: params['name'], description: params['description'])
+    redirect '/spaces'
   end
 end
