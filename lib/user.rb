@@ -16,13 +16,15 @@ class User
   def self.create(first_name:, last_name:, email:, password:)
     hashed_password = BCrypt::Password.create(password)
     connection = PG.connect(dbname: 'bnb_test')
-    result = connection.exec("INSERT INTO users (firstname, lastname, email, passworddigest) VALUES('#{first_name}','#{last_name}','#{email}','#{hashed_password}') RETURNING id, firstname, lastname, email, passworddigest;")
+    result = connection.exec("INSERT INTO users (first_name, last_name, email, password_digest) 
+                                   VALUES ('#{first_name}','#{last_name}','#{email}','#{hashed_password}')
+                                RETURNING id, first_name, last_name, email, password_digest;")
     User.new(
       id: result[0]['id'],
-      first_name: result[0]['firstname'],
-      last_name: result[0]['lastname'],
+      first_name: result[0]['first_name'],
+      last_name: result[0]['last_name'],
       email: result[0]['email'],
-      password: result[0]['passworddigest']
+      password: result[0]['password_digest']
     )
   end
 
@@ -31,10 +33,10 @@ class User
     result = connection.exec("SELECT * FROM users WHERE id = #{id}")
     User.new(
       id: result[0]['id'],
-      first_name: result[0]['firstname'],
-      last_name: result[0]['lastname'],
+      first_name: result[0]['first_name'],
+      last_name: result[0]['last_name'],
       email: result[0]['email'],
-      password: result[0]['passworddigest']
+      password: result[0]['password_digest']
     )
   end
 end

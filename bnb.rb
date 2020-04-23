@@ -21,7 +21,6 @@ class BnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    conn = PG.connect(dbname: 'bnb_test')
     result = Space.create(name: params['name'])
     "#{result.name} has been listed"
   end
@@ -32,8 +31,8 @@ class BnB < Sinatra::Base
 
   post '/users' do    
     user = User.create(
-      first_name: params['firstname'], 
-      last_name: params['lastname'], 
+      first_name: params['first_name'], 
+      last_name: params['last_name'], 
       password: params['password'], 
       email: params['email']
     )
