@@ -10,9 +10,25 @@
     <input type="text" name="name">
     <input type="number" name="price">
     <input type="text" name="description">
-    <input type='date' name='start-date'>
-    <input type='date' name='end-date'>
+    <div id="date ranges">
+      <div>
+        <input type='date' name='start-date'>
+        <input type='date' name='end-date'>
+      </div>
+      <input id="new-date-range" type="button" value="New date range">
+      <div>
+        <input type='date' name='start-date0'>
+        <input type='date' name='end-date0'>
+      </div>
+    </div>
     <input type="submit" value="Submit">
   </form>
+
+  <script
+    src="https://code.jquery.com/jquery-3.5.0.js"
+    integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+    crossorigin="anonymous">
+  </script>
+  <script src="/date-range-controller.js"></script>
 </body>
 </html>
