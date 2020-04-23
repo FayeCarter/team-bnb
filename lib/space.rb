@@ -12,7 +12,7 @@ class Space
 
   def self.create(name:, price:, description:)
     connection = PG.connect(dbname: 'bnb_test')
-    result = connection.exec("INSERT INTO spaces (name, price, description) VALUES('#{name}', '#{price}, '#{description}') RETURNING  id, name, price, description;")
+    result = connection.exec("INSERT INTO spaces (name, price, description) VALUES('#{name}', '#{price}', '#{description}') RETURNING  id, name, price, description;")
     Space.new(
       id: result[0]['id'],
       name: result[0]['name'],
