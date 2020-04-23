@@ -9,7 +9,7 @@ class Space
     @description = description
   end
 
-  def self.create(name:, description: '')
+  def self.create(name:, description:)
     connection = PG.connect(dbname: 'bnb_test')
     result = connection.exec("INSERT INTO spaces (name, description) VALUES('#{name}', '#{description}') RETURNING id, name, description;")
     Space.new(id: result[0]['id'], name: result[0]['name'], description: result[0]['description'])

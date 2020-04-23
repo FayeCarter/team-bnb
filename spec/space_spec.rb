@@ -16,7 +16,7 @@ describe Space do
 
   describe '.all' do
     it 'gets the space' do
-      Space.create(name: 'London Flat')
+      Space.create(name: 'London Flat', description: '')
       space = Space.all
       expect(space[0].name).to eq('London Flat')
     end
