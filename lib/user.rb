@@ -39,4 +39,16 @@ class User
       password: result[0]['password_digest']
     )
   end
+
+  def self.find_by_email(email)
+    connection = PG.connect(dbname: 'bnb_test')
+    result = connection.exec("SELECT * FROM users WHERE email = '#{email}'")
+    User.new(
+      id: result[0]['id'],
+      first_name: result[0]['first_name'],
+      last_name: result[0]['last_name'],
+      email: result[0]['email'],
+      password: result[0]['password_digest']
+    )
+  end
 end

@@ -25,4 +25,16 @@ describe User do
       expect(found_user.email).to eq(test_user.email)
     end
   end
+
+
+  describe '.find_by_email' do
+    it 'searches users database by email' do
+      test_user = User.create(first_name: 'Graham', last_name: 'Falconer', email: 'gman@gmail.com', password: 'password123')
+      found_user = User.find_by_email(test_user.email)
+
+      expect(found_user.id).to eq(test_user.id)
+      expect(found_user.first_name).to eq(test_user.first_name)
+      expect(found_user.email).to eq(test_user.email)
+    end
+  end
 end

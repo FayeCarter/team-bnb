@@ -42,7 +42,11 @@ class BnB < Sinatra::Base
 
   get '/sessions/new' do
     erb :'sessions/new'
-    "john"
+  end
+
+  post '/sessions' do
+    Users.find_by_email([])
+    redirect '/'
   end
 
 end
