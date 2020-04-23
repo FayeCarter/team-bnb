@@ -8,4 +8,5 @@ def setup_test_database
 
   # Clear the tables
   connection.exec("TRUNCATE spaces CASCADE;")
+  connection.exec("TRUNCATE users CASCADE;")
 end
