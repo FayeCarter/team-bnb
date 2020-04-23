@@ -37,6 +37,4 @@ class User
       password: result[0]['passworddigest']
     )
   end
-  
 end
-

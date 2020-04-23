@@ -31,10 +31,8 @@ class BnB < Sinatra::Base
   end
 
   post '/users' do    
-    #username = params['firstname']
     user = User.create(first_name: params['firstname'], last_name: params['lastname'], password: params['password'], email: params['email'])
     session['user_id'] = user.id
-    pp session   # = 4 ==> userid: 4
     redirect '/'
   end
 
