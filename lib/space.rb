@@ -1,21 +1,23 @@
 require 'pg'
 
 class Space
-  attr_reader :id, :name, :price
+  attr_reader :id, :name, :price, :description
 
-  def initialize(id:, name:, price:)
+  def initialize(id:, name:, price:, description:)
     @id = id
     @name = name
     @price = price
+    @description = description
   end
 
-  def self.create(name:, price:)
+  def self.create(name:, price:, description:)
     connection = PG.connect(dbname: 'bnb_test')
-    result = connection.exec("INSERT INTO spaces (name, price) VALUES('#{name}', '#{price}') RETURNING  id, name, price;")
+    result = connection.exec("INSERT INTO spaces (name, price, description) VALUES('#{name}', '#{price}, '#{description}') RETURNING  id, name, price, description;")
     Space.new(
       id: result[0]['id'],
       name: result[0]['name'],
-      price: result[0]['price']
+      price: result[0]['price'],
+      description: result[0]['description']
     )
   end
 
@@ -26,7 +28,8 @@ class Space
       Space.new(
         id: space['id'],
         name: space['name'],
-        price: space['price']
+        price: space['price'],
+        description: space['description']
       )
     end
   end
