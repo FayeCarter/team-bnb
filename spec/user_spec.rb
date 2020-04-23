@@ -12,7 +12,6 @@ describe User do
     expect(test_user.first_name).to eq 'Graham'
     expect(test_user.last_name).to eq 'Falconer'
     expect(test_user.email).to eq 'gman@gmail.com'
-    expect(test_user.password).to eq result[0]['password_digest']
   end
 
   describe '.find_by_id' do
@@ -36,5 +35,12 @@ describe User do
       expect(found_user.first_name).to eq(test_user.first_name)
       expect(found_user.email).to eq(test_user.email)
     end
+  end
+
+  describe '#authenticate' do
+    it 'checks given password against user password' do
+      user = User.create(first_name: 'Graham', last_name: 'Falconer', email: 'gman@gmail.com', password: 'password123')
+      expect(user.authenticate('password123')).to eq true
+    end 
   end
 end

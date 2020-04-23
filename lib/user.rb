@@ -10,7 +10,7 @@ class User
     @first_name = first_name
     @last_name = last_name
     @email = email
-    @password = password
+    @password = BCrypt::Password.new(password)
   end
 
   def self.create(first_name:, last_name:, email:, password:)
@@ -42,7 +42,7 @@ class User
 
   def self.find_by_email(email)
     connection = PG.connect(dbname: 'bnb_test')
-    result = connection.exec("SELECT * FROM users WHERE email = '#{email}'")
+    result = connection.exec("SELECT * FROM users WHERE email = '#{email}';")
     User.new(
       id: result[0]['id'],
       first_name: result[0]['first_name'],
@@ -51,4 +51,11 @@ class User
       password: result[0]['password_digest']
     )
   end
+  
+  def authenticate(password)
+    p password
+    p @password
+    password == @password 
+  end
+
 end
