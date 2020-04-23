@@ -29,15 +29,19 @@ class BnB < Sinatra::Base
     erb :'users/new'
   end
 
-  post '/users' do    
+  post '/users' do
     user = User.create(
-      first_name: params['first_name'], 
-      last_name: params['last_name'], 
-      password: params['password'], 
+      first_name: params['first_name'],
+      last_name: params['last_name'],
+      password: params['password'],
       email: params['email']
     )
     session['user_id'] = user.id
     redirect '/'
+  end
+
+  get '/sessions/new' do
+
   end
 
 end
