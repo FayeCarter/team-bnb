@@ -1,6 +1,5 @@
-require 'pg'
+require 'dbconnection'
 
 def setup_test_database
-  connection = PG.connect(dbname: 'bnb_test')
-  connection.exec('TRUNCATE spaces CASCADE;')
+  DBConnection.query('TRUNCATE spaces CASCADE;')
 end

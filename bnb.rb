@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require './lib/space'
-require 'pg'
 
 class BnB < Sinatra::Base
   get '/' do
