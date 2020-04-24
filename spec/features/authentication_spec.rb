@@ -6,5 +6,8 @@ feature 'authentication' do
     fill_in('email', with: 'johnsmith@smith.com')
     click_on 'login'
     expect(page).to have_content('john')
+    expect(page).to_not have_content('Sinatra')
   end
+
+
 end
