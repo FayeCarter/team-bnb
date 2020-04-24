@@ -14,7 +14,7 @@ class Space
 
   def self.create(name:, price:, description:, start_date: 'default', end_date: 'default')
     connection = PG.connect(dbname: 'bnb_test')
-    if start_date != 'default'
+    if start_date != ''
       result = connection.exec("INSERT INTO spaces (name, price, description, start_date, end_date) VALUES('#{name}', '#{price}', '#{description}', '#{start_date}', '#{end_date}') RETURNING  id, name, price, description, start_date, end_date;")
     else
       result = connection.exec("INSERT INTO spaces (name, price, description) VALUES('#{name}', '#{price}', '#{description}' ) RETURNING  id, name, price, description;")
