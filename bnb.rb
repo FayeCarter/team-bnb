@@ -1,7 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/space'
-require 'pg'
 require './lib/user'
 
 class BnB < Sinatra::Base

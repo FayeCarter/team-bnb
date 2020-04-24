@@ -1,12 +1,11 @@
 require 'space'
-require 'pg'
+require 'dbconnection'
 
 describe Space do
   describe '.create' do
     it 'creates a new space' do
       cottage = Space.create(name: "Cottage", price: 0, description: 'A wonderful property', start_date:'2020-04-23', end_date:'2020-04-24')
-      connection = PG.connect(dbname: 'bnb_test')
-      result = connection.query("SELECT * FROM spaces")
+      result = DBConnection.query("SELECT * FROM spaces")
        
       expect(cottage.id).to eq(result[0]['id'])
       expect(cottage.name).to eq(result[0]['name'])
