@@ -6,6 +6,10 @@
   <title>Sign in</title>
 </head>
 <body>
+    <% if flash[:notice] %>
+      <h2><%= flash[:notice] %></h2>
+    <% end %>
+
   <form action='/sessions' method='post'>
     <input type="password" name="password">
     <input type="email" name="email">

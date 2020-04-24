@@ -1,10 +1,12 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require './lib/space'
 require 'pg'
 require './lib/user'
 
 class BnB < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
 
   get '/' do
     @user = User.find_by_id(session['user_id'])
@@ -50,7 +52,8 @@ class BnB < Sinatra::Base
       session['user_id'] = user.id
       redirect '/'
     else
-      'Incorrect email or password'
+      flash[:notice] = 'Incorrect email or password'
+      redirect '/sessions/new'
     end
   end
 end
