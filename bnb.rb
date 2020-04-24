@@ -9,7 +9,11 @@ class BnB < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
-    @user = User.find_by_id(session['user_id'])
+    if session['user_id'] == nil 
+      @user  = nil 
+    else 
+      @user = User.find_by_id(session['user_id'])
+    end 
     erb :index
   end
 
@@ -58,6 +62,8 @@ class BnB < Sinatra::Base
   end
 
   post '/sessions/delete' do
-    "You have been signed out"
+    session.clear
+    flash[:notice] = "You have been signed out"
+    redirect '/'
   end 
 end

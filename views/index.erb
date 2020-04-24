@@ -6,11 +6,15 @@
   <title>BNB</title>
 </head>
 <body>
-  <p><%= @user.first_name %></p>
+  <% if @user %>
+    <p><%= @user.first_name %></p>
+  <%end%>
+  <% if flash[:notice] %>
+    <h2><%=flash[:notice]%> </h2>
+  <%end%>
 
-
-<form action='/sessions/delete' method='post' > 
-  <input type="submit" value="logout">
-</form>
+  <form action='/sessions/delete' method='post' > 
+    <input type="submit" value="logout">
+  </form>
 </body>
 </html>
