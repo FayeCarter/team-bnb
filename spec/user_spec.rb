@@ -12,7 +12,6 @@ describe User do
     expect(test_user.first_name).to eq 'Graham'
     expect(test_user.last_name).to eq 'Falconer'
     expect(test_user.email).to eq 'gman@gmail.com'
-    expect(test_user.password).to eq result[0]['password_digest']
   end
 
   describe '.find_by_id' do
@@ -23,6 +22,21 @@ describe User do
       expect(found_user.id).to eq(test_user.id)
       expect(found_user.first_name).to eq(test_user.first_name)
       expect(found_user.email).to eq(test_user.email)
+    end
+  end
+
+  describe '.authenticate' do
+    it 'returns user instance if matched email and correct password' do
+      user = User.create(first_name: 'Graham', last_name: 'Falconer', email: 'gman@gmail.com', password: 'password123')
+      auth_user = User.authenticate(email: 'gman@gmail.com', password: 'password123')
+      expect(auth_user.first_name).to eq user.first_name
+    end
+    it 'returns nil if the email is not in the db' do
+      expect(User.authenticate(email: 'gman@gmail.com', password: 'password123')).to eq nil
+    end
+    it 'returns nil if the email exists but password is incorrect' do
+      user = User.create(first_name: 'Graham', last_name: 'Falconer', email: 'gman@gmail.com', password: 'password123')
+      expect(User.authenticate(email: 'gman@gmail.com', password: 'wrongpassword')).to eq nil
     end
   end
 end
