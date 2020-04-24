@@ -13,7 +13,7 @@ class Space
   end
 
   def self.create(name:, price:, description:, start_date: 'default', end_date: 'default')
-    if start_date != 'default'
+    if start_date != ''
       result = DBConnection.query("INSERT INTO spaces (name, price, description, start_date, end_date) VALUES('#{name}', '#{price}', '#{description}', '#{start_date}', '#{end_date}') RETURNING  id, name, price, description, start_date, end_date;")
     else
       result = DBConnection.query("INSERT INTO spaces (name, price, description) VALUES('#{name}', '#{price}', '#{description}' ) RETURNING  id, name, price, description;")

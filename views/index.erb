@@ -13,8 +13,16 @@
     <h2><%=flash[:notice]%> </h2>
   <%end%>
 
-  <form action='/sessions/delete' method='post' > 
-    <input type="submit" value="logout">
-  </form>
+
+  <a href="/spaces">View spaces</a>
+  <% if @user %>
+    <a href="/spaces/new">List space</a>
+    <form action='/sessions/delete' method='post' > 
+      <input type="submit" value="logout">
+    </form>
+  <% else %>
+    <a href="/sessions/new">Log in</a>
+    <a href="/users/new">Sign up</a>
+  <% end %>
 </body>
 </html>

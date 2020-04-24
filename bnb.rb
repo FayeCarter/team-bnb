@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/space'
 require './lib/user'
+require './lib/dbconnection'
 
 class BnB < Sinatra::Base
   enable :sessions
