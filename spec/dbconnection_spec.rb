@@ -10,4 +10,14 @@ describe DBConnection do
       expect { DBConnection.connect(dbname: 'test', test_dbname: 'test') }.to raise_error PG::ConnectionBad
     end
   end
+
+  describe '.query' do
+    it 'can execute a valid query' do
+      expect { DBConnection.query('SELECT * FROM spaces;') }.not_to raise_error()
+    end
+
+    it 'raises an error when given a bad query' do
+      expect { DBConnection.query('SELECT POTATOES FROM farm;') }.to raise_error PG::Error
+    end
+  end
 end
