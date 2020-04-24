@@ -56,4 +56,8 @@ class BnB < Sinatra::Base
       redirect '/sessions/new'
     end
   end
+
+  post '/sessions/delete' do
+    "You have been signed out"
+  end 
 end
