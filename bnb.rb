@@ -46,7 +46,6 @@ class BnB < Sinatra::Base
 
   post '/sessions' do
     user = User.find_by_email(params['email'])
-    p user  
     redirect '/'
   end
 

@@ -37,10 +37,17 @@ describe User do
     end
   end
 
-  describe '#authenticate' do
-    it 'checks given password against user password' do
+  describe '.authenticate' do
+    it 'returns user instance if matched email and correct password' do
       user = User.create(first_name: 'Graham', last_name: 'Falconer', email: 'gman@gmail.com', password: 'password123')
-      expect(user.authenticate('password123')).to eq true
-    end 
+      auth_user = User.authenticate(email: 'gman@gmail.com', password: 'password123')
+      expect(auth_user.first_name).to eq user.first_name
+    end
+  it 'returns nil if the email is not in the db' do
+      expect(User.authenticate(email: 'gman@gmail.com', password: 'password123')).to eq nil
+    end
+    it 'returns nil if the email exists but password is incorrect' do
+      expect(User.authenticate(email: 'gman@gmail.com', password: 'wrongpassword')).to eq nil
+    end
   end
 end

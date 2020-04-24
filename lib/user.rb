@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'bcrypt'
+require 'pg'
 
 class User
   attr_reader :id, :first_name, :last_name, :email, :password
@@ -51,11 +52,19 @@ class User
       password: result[0]['password_digest']
     )
   end
-  
-  def authenticate(password)
-    p password
-    p @password
-    password == @password 
-  end
 
+  def self.authenticate(email:, password:)
+    connection = PG.connect(dbname: 'bnb_test')
+    result = connection.exec("SELECT * FROM users WHERE email = '#{email}';")
+
+    return unless result.any?
+    return unless BCrypt::Password.new(result[0]['password_digest']) == password
+    User.new(
+      id: result[0]['id'],
+      first_name: result[0]['first_name'],
+      last_name: result[0]['last_name'],
+      email: result[0]['email'],
+      password: result[0]['password_digest']
+    )
+  end
 end
