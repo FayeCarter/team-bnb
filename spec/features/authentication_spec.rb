@@ -17,6 +17,5 @@ feature 'authentication' do
     click_on 'login'
     expect(page).to have_content('Incorrect email or password')
     expect(page).to_not have_content('Sinatra')
-
   end
 end
