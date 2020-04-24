@@ -52,7 +52,7 @@ class BnB < Sinatra::Base
 
   post '/sessions' do
     user = User.authenticate(email: params['email'], password: params['password'])
-    if user != nil
+    if user
       session['user_id'] = user.id
       redirect '/'
     else

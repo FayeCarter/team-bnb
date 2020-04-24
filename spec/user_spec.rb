@@ -31,10 +31,11 @@ describe User do
       auth_user = User.authenticate(email: 'gman@gmail.com', password: 'password123')
       expect(auth_user.first_name).to eq user.first_name
     end
-  it 'returns nil if the email is not in the db' do
+    it 'returns nil if the email is not in the db' do
       expect(User.authenticate(email: 'gman@gmail.com', password: 'password123')).to eq nil
     end
     it 'returns nil if the email exists but password is incorrect' do
+      user = User.create(first_name: 'Graham', last_name: 'Falconer', email: 'gman@gmail.com', password: 'password123')
       expect(User.authenticate(email: 'gman@gmail.com', password: 'wrongpassword')).to eq nil
     end
   end
